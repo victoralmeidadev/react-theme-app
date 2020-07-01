@@ -4,9 +4,12 @@ import usePersistedState from "./utils/usePersistedState";
 
 import light from "./styles/themes/light";
 import dark from "./styles/themes/dark";
+import { cardsInfo } from "./utils/constants";
 
 import GlobalStyle from "./styles/global";
 import Header from "./components/Header";
+import Card from "./components/Card";
+import { Content } from "./components/Content/styles";
 
 function App() {
   const [theme, setTheme] = usePersistedState<DefaultTheme>("theme", light);
@@ -19,6 +22,11 @@ function App() {
       <div className="App">
         <GlobalStyle />
         <Header toggleTheme={toggleTheme} />
+        <Content>
+          {cardsInfo.map((item) => (
+            <Card title={item.title} description={item.description} />
+          ))}
+        </Content>
       </div>
     </ThemeProvider>
   );
